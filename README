@@ -1,0 +1,25 @@
+Xcode version display
+
+Displays a view with a label of the version and build numbers
+
+just add:
+#import "Version.h"
+
+then call:
+[[[Version alloc] initOnView:self.view] autorelease];
+
+A good place is in viewWillAppear on your first view controller
+
+You could also have something like this:
+
+BOOL firstRun = YES;
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (firstRun)
+    {
+        firstRun = NO;
+        [[[Version alloc] initOnView:self.view] autorelease];
+    }
+}
